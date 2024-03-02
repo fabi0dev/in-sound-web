@@ -23,7 +23,7 @@ export const Home = () => {
       <div>
         <Menu />
 
-        <div className="w-auto ml-80 ">
+        <div className="w-auto ml-80 pb-24">
           <div className="w-[95%] mx-auto">
             <Header />
 
