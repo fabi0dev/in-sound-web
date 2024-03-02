@@ -1,7 +1,12 @@
+import { Container, Header, Menu } from "@components";
+
 export const Home = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </div>
+    <Container>
+      <div>
+        <Menu />
+      </div>
+      <Header />
+    </Container>
   );
 };
