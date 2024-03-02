@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import favorites from "./reducers/favorites";
+import { default as slices } from "./reducers";
 import localforage from "localforage";
 import { persistReducer, persistStore } from "redux-persist";
 
@@ -10,7 +10,7 @@ const currencyPersistConfig = {
 };
 
 const all = combineReducers({
-  favorites,
+  ...slices,
 });
 
 const reducers = persistReducer(currencyPersistConfig, all);

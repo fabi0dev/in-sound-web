@@ -10,4 +10,15 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  server: {
+    cors: false,
+    proxy: {
+      "/api": {
+        target: "https://api.deezer.com",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 });

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface FavoritesProps {}
+interface favoritesProps {}
 const initialState = {};
 
 export const slice = createSlice({
@@ -10,7 +10,7 @@ export const slice = createSlice({
     setData: (state, { payload }) => {
       return {
         ...state,
-        welcomeLinkedIn: payload,
+        name: payload,
       };
     },
   },
@@ -18,6 +18,6 @@ export const slice = createSlice({
 
 export const { setData } = slice.actions;
 export default slice.reducer;
-export const selectorToasts = (state: {
-  toasts: FavoritesProps;
-}): FavoritesProps => state.toasts;
+export const selectorfavorites = (state: {
+  favorites: favoritesProps;
+}): favoritesProps => state.favorites;
