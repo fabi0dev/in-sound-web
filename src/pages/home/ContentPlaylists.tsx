@@ -1,8 +1,8 @@
 import { selectorEditorialChart } from "@/store/reducers/editorialChart";
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { TitleDivider } from "./TitleDivider";
 import { PiPlayCircleFill } from "react-icons/pi";
+import { TitleDivider } from "@/components";
 
 export const ContentPlaylists: FC = () => {
   const {
@@ -12,7 +12,7 @@ export const ContentPlaylists: FC = () => {
   return (
     <div>
       <TitleDivider title="Playlists Populares" href="#" />
-      <div className="flex gap-5 justify-between overflow-x-hidden">
+      <div className="flex gap-5 justify-start overflow-x-hidden">
         {data?.map((playlist, key) => {
           if (key <= 5) {
             return (

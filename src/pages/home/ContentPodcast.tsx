@@ -1,8 +1,8 @@
 import { selectorEditorialChart } from "@/store/reducers/editorialChart";
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { TitleDivider } from "./TitleDivider";
 import { PiPlayCircleFill } from "react-icons/pi";
+import { TitleDivider } from "@/components";
 
 export const ContentPodcast: FC = () => {
   const {

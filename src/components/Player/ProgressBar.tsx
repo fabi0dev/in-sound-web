@@ -37,7 +37,12 @@ export const ProgressBar: FC<ProgressBarProps> = ({ player }) => {
   return (
     <div className="flex w-full mb-3 text-sm">
       <span>{convertTime(currentTime)}</span>
-      <Slider value={[sliderValue]} className="mx-2" />
+      <Slider
+        minStepsBetweenThumbs={0}
+        value={[sliderValue]}
+        max={100}
+        className="mx-2"
+      />
       <span>{convertTime(durationTotal)}</span>
     </div>
   );

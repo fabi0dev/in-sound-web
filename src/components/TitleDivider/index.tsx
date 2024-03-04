@@ -20,9 +20,11 @@ export const TitleDivider: FC<TitleDividerProps> = ({
       )}
     >
       {title}
-      <a href={href} className="text-[15px] font-semibold">
-        Ver todos
-      </a>
+      {href && (
+        <a href={href} className="text-[15px] font-semibold">
+          Ver todos
+        </a>
+      )}
     </div>
   );
 };

@@ -1,10 +1,12 @@
 import { selectorEditorialChart } from "@/store/reducers/editorialChart";
 import { FC } from "react";
-import { useSelector } from "react-redux";
-import { TitleDivider } from "./TitleDivider";
+import { useDispatch, useSelector } from "react-redux";
 import { PiPlayCircleFill } from "react-icons/pi";
+import { setTrack } from "@/store/reducers/player";
+import { TitleDivider } from "@/components";
 
 export const ContentTracks: FC = () => {
+  const dispatch = useDispatch();
   const {
     tracks: { data },
   } = useSelector(selectorEditorialChart);
@@ -12,7 +14,7 @@ export const ContentTracks: FC = () => {
   return (
     <div>
       <TitleDivider title="Músicas" href="#" />
-      <div className="flex gap-5 justify-between overflow-x-hidden">
+      <div className="flex gap-5 justify-start overflow-x-hidden">
         {data?.map((track, key) => {
           if (key <= 5) {
             return (
@@ -29,9 +31,12 @@ export const ContentTracks: FC = () => {
                   ></div>
 
                   <div className="hover-options text-cyan-400 flex justify-end">
-                    <a className="cursor-pointer">
+                    <div
+                      onClick={() => dispatch(setTrack(track))}
+                      className="cursor-pointer"
+                    >
                       <PiPlayCircleFill className="icon shadow-black " />
-                    </a>
+                    </div>
                   </div>
 
                   <div>
