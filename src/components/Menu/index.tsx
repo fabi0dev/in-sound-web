@@ -4,6 +4,7 @@ import { IoAlbumsOutline } from "react-icons/io5";
 import { FaRegStar } from "react-icons/fa";
 import { BiSolidPlaylist } from "react-icons/bi";
 import { IoStar } from "react-icons/io5";
+import { RiNeteaseCloudMusicLine } from "react-icons/ri";
 
 interface TitleDividerProps {
   children: string;
@@ -52,6 +53,10 @@ export const Menu: FC = () => {
   return (
     <div className="w-80 h-lvh  fixed left-0 ">
       <div className="w-10/12  mx-auto mt-7">
+        <div className="flex items-center text-2xl">
+          <RiNeteaseCloudMusicLine className="mr-2 text-cyan-500" />
+          <span className="text-cyan-100">In</span>Sound
+        </div>
         <TitleDivider>Menu</TitleDivider>
 
         <ItemMenu href="/" descr="Explorar" current={true} icon={<CgHome />} />

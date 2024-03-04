@@ -16,8 +16,9 @@ export const ContentPlaylists: FC = () => {
         {data?.map((playlist, key) => {
           if (key <= 5) {
             return (
-              <div
+              <a
                 key={key}
+                href={`ViewPlaylist?id=${playlist.id}`}
                 className="bg bg-slate-900 hover:bg-slate-800 rounded-md p-4 "
               >
                 <div className="content-hover-options text-slate-200 ">
@@ -40,7 +41,7 @@ export const ContentPlaylists: FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
             );
           }
         })}
