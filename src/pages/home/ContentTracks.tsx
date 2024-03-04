@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PiPlayCircleFill } from "react-icons/pi";
 import { setTrack } from "@/store/reducers/player";
 import { TitleDivider } from "@/components";
+import { SkeletonPicture } from "./SkeletonPicture";
 
 export const ContentTracks: FC = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,9 @@ export const ContentTracks: FC = () => {
 
   return (
     <div>
-      <TitleDivider title="Músicas" href="#" />
+      <TitleDivider title="Músicas" href="AllTracks" />
+      {data?.length == 0 && <SkeletonPicture />}
+
       <div className="flex gap-5 justify-start overflow-x-hidden">
         {data?.map((track, key) => {
           if (key <= 5) {

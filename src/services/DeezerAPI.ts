@@ -84,7 +84,7 @@ const deezer = {
       console.log("error load playlist", error);
     }
   },
-  getArtist: async (id: string) => {
+  getArtist: async (id: string | null) => {
     try {
       const { data } = await api.get(`artist/${id}`);
 
@@ -93,7 +93,7 @@ const deezer = {
       console.log("error load artist getArtist", error);
     }
   },
-  getArtistTopTrack: async (id: string, limit = 50) => {
+  getArtistTopTrack: async (id: string | null, limit = 100) => {
     try {
       const { data } = await api.get(`artist/${id}/top?limit=${limit}`);
 

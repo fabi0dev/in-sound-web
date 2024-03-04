@@ -4,6 +4,8 @@ import { FC, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { FaPlay } from "react-icons/fa6";
 import { SkeletonAlbum } from "./SkeletonAlbum";
+import { useDispatch } from "react-redux";
+import { setPlaylist } from "@/store/reducers/player";
 
 interface IALbum {
   artist: {
@@ -55,6 +57,7 @@ interface IALbum {
 }
 
 export const ViewAlbum: FC = () => {
+  const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [data, setData] = useState<IALbum | null>(null);
   const [loading, setLoading] = useState(false);
@@ -72,8 +75,8 @@ export const ViewAlbum: FC = () => {
 
   return (
     <Container className="text-slate-200">
-      {loading && <SkeletonAlbum />}
-      {!loading && (
+      {loading || (!data?.id && <SkeletonAlbum />)}
+      {!loading && data?.id && (
         <div>
           <div className="flex mt-7">
             <div
@@ -90,7 +93,12 @@ export const ViewAlbum: FC = () => {
                     backgroundImage: `url(${data?.artist.picture_medium})`,
                   }}
                 ></div>
-                {data?.artist.name}
+                <a
+                  href={`#ViewArtist?id=${data.artist.id}`}
+                  className="hover:underline"
+                >
+                  {data?.artist.name}
+                </a>
               </div>
               <div className="text-slate-400 mt-2">
                 {data?.nb_tracks} Músicas | {data?.fans} Fãs
@@ -99,7 +107,12 @@ export const ViewAlbum: FC = () => {
           </div>
 
           <div className="mt-5">
-            <Button icon={<FaPlay />}>Ouvir</Button>
+            <Button
+              onClick={() => dispatch(setPlaylist(data?.tracks.data))}
+              icon={<FaPlay />}
+            >
+              Ouvir
+            </Button>
           </div>
 
           <div>

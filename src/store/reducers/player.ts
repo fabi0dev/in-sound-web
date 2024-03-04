@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface playerProps {
+interface TrackProps {
   id: number;
   preview: string;
   title: string;
@@ -19,14 +19,22 @@ interface playerProps {
     cover_small: string;
     cover_xl: string;
   };
+}
+
+interface PlayerProps {
   paused: boolean;
   currentTime: number;
   volume: number;
+  playlist: Array<TrackProps>;
+  current: TrackProps;
 }
 
 const initialState = {
   volume: 0.2,
   currentTime: 0,
+  current: {
+    id: 0,
+  },
 };
 
 export const slice = createSlice({
@@ -37,8 +45,16 @@ export const slice = createSlice({
       return {
         ...state,
         ...payload,
-        ...initialState,
         paused: false,
+        currentTime: 0,
+        current: payload,
+      };
+    },
+    setPlaylist: (state, { payload }) => {
+      return {
+        ...state,
+        playlist: payload,
+        current: payload.length > 0 ? payload[0] : [],
       };
     },
     setPaused: (state, { payload }) => {
@@ -53,10 +69,50 @@ export const slice = createSlice({
         currentTime: payload,
       };
     },
+
+    prevTrack: (state) => {
+      const { playlist, current } = state as PlayerProps;
+      let prev = {};
+      playlist.map((track, index) => {
+        if (track.id == current.id) {
+          prev = playlist[index - 1] || playlist[0];
+        }
+      });
+
+      return {
+        ...state,
+        paused: false,
+        current: prev as TrackProps,
+      };
+    },
+
+    nextTrack: (state) => {
+      const { playlist, current } = state as PlayerProps;
+      let next = {};
+      playlist.map((track, index) => {
+        if (track.id == current.id) {
+          next = playlist[index + 1] || playlist[playlist.length - 1];
+        }
+      });
+      console.log(next);
+
+      return {
+        ...state,
+        paused: false,
+        current: next as TrackProps,
+      };
+    },
   },
 });
 
-export const { setTrack, setPaused, setCurrentTime } = slice.actions;
+export const {
+  setTrack,
+  setPlaylist,
+  setPaused,
+  setCurrentTime,
+  nextTrack,
+  prevTrack,
+} = slice.actions;
 export default slice.reducer;
-export const selectorplayer = (state: { player: playerProps }): playerProps =>
+export const selectorplayer = (state: { player: PlayerProps }): PlayerProps =>
   state.player;

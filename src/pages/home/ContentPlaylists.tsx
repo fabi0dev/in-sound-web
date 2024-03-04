@@ -3,6 +3,7 @@ import { FC } from "react";
 import { useSelector } from "react-redux";
 import { PiPlayCircleFill } from "react-icons/pi";
 import { TitleDivider } from "@/components";
+import { SkeletonPicture } from "./SkeletonPicture";
 
 export const ContentPlaylists: FC = () => {
   const {
@@ -11,14 +12,16 @@ export const ContentPlaylists: FC = () => {
 
   return (
     <div>
-      <TitleDivider title="Playlists Populares" href="#" />
+      <TitleDivider title="Playlists Populares" href="AllPlaylists" />
+      {data?.length == 0 && <SkeletonPicture />}
+
       <div className="flex gap-5 justify-start overflow-x-hidden">
         {data?.map((playlist, key) => {
           if (key <= 5) {
             return (
               <a
                 key={key}
-                href={`ViewPlaylist?id=${playlist.id}`}
+                href={`#ViewPlaylist?id=${playlist.id}`}
                 className="bg bg-slate-900 hover:bg-slate-800 rounded-md p-4 "
               >
                 <div className="content-hover-options text-slate-200 ">

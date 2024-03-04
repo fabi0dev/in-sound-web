@@ -36,7 +36,10 @@ export const TrackItem: FC<TrackItemProps> = ({
   ...props
 }) => {
   const dispatch = useDispatch();
-  const { id, paused } = useSelector(selectorplayer);
+  const {
+    current: { id },
+    paused,
+  } = useSelector(selectorplayer);
 
   return (
     <div
@@ -63,7 +66,14 @@ export const TrackItem: FC<TrackItemProps> = ({
           <div className="mr-2">{index + 1}. </div>
           <div>
             <div>{data.title}</div>
-            <div className="text-xs text-slate-400">{data.artist.name}</div>
+            <div className="text-xs text-slate-400">
+              <a
+                href={`#ViewArtist?id=${data.artist.id}`}
+                className="hover:underline"
+              >
+                {data.artist.name}
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -71,7 +81,11 @@ export const TrackItem: FC<TrackItemProps> = ({
         <FaRegHeart />
       </div>
 
-      <div>{data.album.title}</div>
+      <div>
+        <a href={`#ViewAlbum?id=${data.album.id}`} className="hover:underline">
+          {data.album.title}
+        </a>
+      </div>
 
       <div>0:30</div>
     </div>

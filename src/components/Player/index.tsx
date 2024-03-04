@@ -5,14 +5,24 @@ import { FaPauseCircle } from "react-icons/fa";
 import { IoPlaySkipBack } from "react-icons/io5";
 import { IoPlaySkipForward } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { selectorplayer, setPaused } from "@/store/reducers/player";
+import {
+  nextTrack,
+  prevTrack,
+  selectorplayer,
+  setPaused,
+} from "@/store/reducers/player";
 import { motion } from "framer-motion";
 import { ProgressBar } from "./ProgressBar";
 
 export const Player: FC = () => {
   const dispatch = useDispatch();
-  const { title, preview, album, artist, paused, volume, currentTime } =
-    useSelector(selectorplayer);
+  const {
+    current: { title, preview, album, artist },
+    paused,
+    volume,
+    currentTime,
+  } = useSelector(selectorplayer);
+
   const audio = useRef(new Audio());
   const player = audio.current;
 
@@ -65,9 +75,13 @@ export const Player: FC = () => {
         </div>
         <div className="justify-center items-center text-slate-200  ">
           <div className="flex justify-center items-center  mb-2">
-            <motion.button whileTap={{ scale: 1.1 }}>
+            <motion.button
+              onClick={() => dispatch(prevTrack())}
+              whileTap={{ scale: 1.1 }}
+            >
               <IoPlaySkipBack className="w-6 h-6" />
             </motion.button>
+
             <motion.button
               whileTap={{ scale: 1.1 }}
               onClick={() => playPause()}
@@ -80,7 +94,10 @@ export const Player: FC = () => {
               )}
             </motion.button>
 
-            <motion.button whileTap={{ scale: 1.1 }}>
+            <motion.button
+              onClick={() => dispatch(nextTrack())}
+              whileTap={{ scale: 1.1 }}
+            >
               <IoPlaySkipForward className="w-6 h-6" />
             </motion.button>
           </div>

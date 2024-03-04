@@ -8,9 +8,9 @@ import { SkeletonPlaylist } from "./SkeletonPlaylist";
 import { useDispatch } from "react-redux";
 import { setPlaylist } from "@/store/reducers/player";
 
-interface IPlaylist {
+interface IArtist {
   id: number;
-  title: string;
+  name: string;
   link: string;
   nb_tracks: string;
   picture: string;
@@ -19,52 +19,58 @@ interface IPlaylist {
   picture_small: string;
   picture_xl: string;
   tracklist: string;
-  description: string;
-  fans: string;
-  creator: {
-    name: string;
-  };
-
-  tracks: {
-    data: Array<{
-      id: number;
-      preview: string;
-      title: string;
-      title_short: string;
-      duration: number;
-      artist: {
-        id: number;
-        name: string;
-      };
-      album: {
-        id: number;
-        title: string;
-        cover: string;
-        cover_big: string;
-        cover_medium: string;
-        cover_small: string;
-        cover_xl: string;
-      };
-    }>;
-  };
+  nb_fan: string;
 }
 
-export const ViewPlaylist: FC = () => {
+interface Itrack {
+  data: Array<{
+    id: number;
+    preview: string;
+    title: string;
+    title_short: string;
+    duration: number;
+    artist: {
+      id: number;
+      name: string;
+    };
+    album: {
+      id: number;
+      title: string;
+      cover: string;
+      cover_big: string;
+      cover_medium: string;
+      cover_small: string;
+      cover_xl: string;
+    };
+  }>;
+}
+
+export const ViewArtist: FC = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const [data, setData] = useState<IPlaylist | null>(null);
+  const [data, setData] = useState<IArtist | null>(null);
+  const [tracks, setTracks] = useState<Itrack | null>(null);
   const [loading, setLoading] = useState(false);
 
   const getData = useCallback(async () => {
     setLoading(true);
-    const response = await deezer.getPlaylist(searchParams.get("id"));
+    const [artistResponse, tracksResponse] = await Promise.all([
+      deezer.getArtist(searchParams.get("id")),
+      deezer.getArtistTopTrack(searchParams.get("id")),
+    ]).then((response) => {
+      return response;
+    });
+
     setLoading(false);
-    setData(response);
+    setData(artistResponse);
+    setTracks(tracksResponse);
   }, [searchParams]);
 
   useEffect(() => {
     getData();
   }, [getData]);
+
+  console.log(data);
 
   return (
     <Container className="text-slate-200">
@@ -74,23 +80,19 @@ export const ViewPlaylist: FC = () => {
           <div className="flex mt-7">
             <div
               className="w-60 h-60 rounded-md mr-5 bg-cover"
-              style={{ backgroundImage: `url(${data?.picture_big})` }}
+              style={{ backgroundImage: `url(${data?.picture_medium})` }}
             ></div>
 
             <div className="mt-5">
-              <div className="text-3xl font-bold ">{data?.title}</div>
-              <div className="text-xs flex items-center mt-4">
-                {data?.creator.name}
-              </div>
-              <div className="text-slate-400 mt-2">
-                {data?.nb_tracks} Músicas | {data?.fans} Fãs
-              </div>
+              <div className="text-3xl font-bold ">{data?.name}</div>
+
+              <div className="text-slate-400 mt-2">{data?.nb_fan} Fãs</div>
             </div>
           </div>
 
           <div
             className="mt-5"
-            onClick={() => dispatch(setPlaylist(data?.tracks.data))}
+            onClick={() => dispatch(setPlaylist(tracks?.data))}
           >
             <Button icon={<FaPlay />}>Ouvir</Button>
           </div>
@@ -105,7 +107,7 @@ export const ViewPlaylist: FC = () => {
               </div>
             </div>
 
-            {data?.tracks.data.map((track, key) => {
+            {tracks?.data.map((track, key) => {
               return <TrackItem data={track} index={key} key={key} />;
             })}
           </div>

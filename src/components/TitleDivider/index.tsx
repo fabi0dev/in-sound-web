@@ -21,7 +21,7 @@ export const TitleDivider: FC<TitleDividerProps> = ({
     >
       {title}
       {href && (
-        <a href={href} className="text-[15px] font-semibold">
+        <a href={`#${href}`} className="text-[15px] font-semibold">
           Ver todos
         </a>
       )}

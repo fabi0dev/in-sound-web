@@ -25,11 +25,13 @@ interface ItemPictureProps {
     link: string;
     tracklist: string;
   };
-  href: string;
+  href?: string;
+  onPlay?: () => void;
 }
 
 export const ItemPicture: FC<ItemPictureProps> = ({
   data: { cover_medium, title, artist },
+  onPlay,
   href,
 }) => {
   return (
@@ -40,15 +42,21 @@ export const ItemPicture: FC<ItemPictureProps> = ({
           className="bg bg-slate-900 bg-opacity-50 hover:bg-slate-800"
         >
           <div
-            style={{ backgroundImage: `url('${cover_medium}')` }}
+            style={{
+              backgroundImage: `url('${
+                cover_medium || artist.picture_medium
+              }')`,
+            }}
             className={`h-48 w-48 bg-cover rounded-md `}
           ></div>
         </a>
 
         <div className="hover-options text-cyan-400 flex justify-end">
-          <a className="cursor-pointer">
-            <PiPlayCircleFill className="icon" />
-          </a>
+          {onPlay && (
+            <a onClick={onPlay} className="cursor-pointer">
+              <PiPlayCircleFill className="icon" />
+            </a>
+          )}
         </div>
 
         <div>

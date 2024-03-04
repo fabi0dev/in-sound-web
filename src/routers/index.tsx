@@ -1,5 +1,9 @@
 import { default as Pages } from "../pages";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
 
 export default function Routers() {
   const routers = Object.entries(Pages).map(([nameScreen, Component]) => {
@@ -11,5 +15,5 @@ export default function Routers() {
     };
   });
 
-  return <RouterProvider router={createBrowserRouter([...routers])} />;
+  return <RouterProvider router={createHashRouter([...routers])} />;
 }

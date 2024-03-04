@@ -7,7 +7,6 @@ import { setData } from "@/store/reducers/editorialChart";
 import { ContentTracks } from "./ContentTracks";
 import { ContentPlaylists } from "./ContentPlaylists";
 import { ContentArtists } from "./ContentArtists";
-import { ContentPodcast } from "./ContentPodcast";
 import "./style.scss";
 
 export const Home = () => {
@@ -27,7 +26,6 @@ export const Home = () => {
 
       <ContentTracks />
       <ContentPlaylists />
-      <ContentPodcast />
     </Container>
   );
 };

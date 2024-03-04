@@ -56,19 +56,7 @@ interface EditorialChartProps {
     }>;
     total: number;
   };
-  podcasts: {
-    data?: Array<{
-      id: number;
-      fans: number;
-      title: string;
-      picture: string;
-      picture_big: string;
-      picture_medium: string;
-      picture_small: string;
-      picture_xl: string;
-    }>;
-    total: number;
-  };
+
   tracks: {
     data?: Array<{
       album: {
@@ -110,10 +98,6 @@ const initialState: EditorialChartProps = {
     total: 0,
   },
   playlists: {
-    data: [],
-    total: 0,
-  },
-  podcasts: {
     data: [],
     total: 0,
   },

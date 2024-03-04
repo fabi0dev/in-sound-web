@@ -4,15 +4,15 @@ import { deezer } from "@/services/DeezerAPI";
 import { FC, useCallback, useEffect, useState } from "react";
 import { PiPlayCircleFill } from "react-icons/pi";
 
-export const AllArtists: FC = () => {
+export const AllPlaylists: FC = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const getAlbum = useCallback(async () => {
     setLoading(true);
-    const { artists } = await deezer.getEditorialChart();
+    const { playlists } = await deezer.getEditorialChart();
     setLoading(false);
-    setData(artists.data);
+    setData(playlists.data);
   }, []);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export const AllArtists: FC = () => {
 
   return (
     <Container className="text-slate-200">
-      <TitleMin>Artists populares</TitleMin>
+      <TitleMin>Playlists populares</TitleMin>
       {loading && (
         <div className="flex flex-wrap gap-5 justify-start">
           <SkeletonItemPicture />
@@ -38,7 +38,7 @@ export const AllArtists: FC = () => {
             return (
               <a
                 key={key}
-                href={`#ViewArtist?id=${id}`}
+                href={`#ViewPlaylist?id=${id}`}
                 className="bg bg-slate-900 bg-opacity-50 hover:bg-slate-800 rounded-md p-4 "
               >
                 <div className="content-hover-options text-slate-200">

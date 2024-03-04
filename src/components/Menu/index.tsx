@@ -1,7 +1,6 @@
 import { FC, ReactNode } from "react";
 import { CgHome } from "react-icons/cg";
 import { IoAlbumsOutline } from "react-icons/io5";
-import { FaRegStar } from "react-icons/fa";
 import { BiSolidPlaylist } from "react-icons/bi";
 import { IoStar } from "react-icons/io5";
 import { RiNeteaseCloudMusicLine } from "react-icons/ri";
@@ -53,7 +52,7 @@ export const Menu: FC = () => {
   return (
     <div className="w-80 h-lvh  fixed left-0 ">
       <div className="w-10/12  mx-auto mt-7">
-        <a href="/" className="flex items-center text-2xl text-slate-100">
+        <a href="#" className="flex items-center text-2xl text-slate-100">
           <RiNeteaseCloudMusicLine className="mr-2 text-cyan-500" />
           <span className="italic">In</span>Sound
         </a>
@@ -61,7 +60,6 @@ export const Menu: FC = () => {
 
         <ItemMenu href="/" descr="Explorar" current={true} icon={<CgHome />} />
         <ItemMenu descr="Albuns" icon={<IoAlbumsOutline />} />
-        <ItemMenu descr="Favoritos" icon={<FaRegStar />} />
 
         <TitleDivider>Biblioteca</TitleDivider>
 

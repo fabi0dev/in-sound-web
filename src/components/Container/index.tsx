@@ -12,7 +12,7 @@ export const Container: FC<ContainerProps> = ({ children, className }) => {
     <div className={cn("min-h-lvh", className)}>
       <Menu />
 
-      <div className="w-auto ml-80 pb-24">
+      <div className="w-auto ml-80 pb-32">
         <div className="w-[95%] mx-auto">
           <Header />
 
