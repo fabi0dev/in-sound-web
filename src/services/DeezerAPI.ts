@@ -111,7 +111,7 @@ const deezer = {
       console.log("error load genre", error);
     }
   },
-  getAlbum: async (id: number) => {
+  getAlbum: async (id: string | null) => {
     try {
       const { data } = await api.get(`album/${id}`);
 

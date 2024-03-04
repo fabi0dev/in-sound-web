@@ -13,6 +13,7 @@ type ItemMenuProps = {
   descr: string;
   icon: ReactNode;
   current?: boolean;
+  href?: string;
 };
 
 export const Menu: FC = () => {
@@ -26,12 +27,20 @@ export const Menu: FC = () => {
     );
   };
 
-  const ItemMenu: FC<ItemMenuProps> = ({ descr, icon, current = false }) => {
+  const ItemMenu: FC<ItemMenuProps> = ({
+    descr,
+    icon,
+    href,
+    current = false,
+  }) => {
     return (
-      <a href="#" className="flex my-5">
+      <a
+        href={href}
+        className="flex my-5 text-slate-300 hover:text-slate-200 cursor-pointer"
+      >
         <div
           data-current={current}
-          className="text-slate-300 text-sm font-semibold flex items-center data-[current=true]:text-cyan-500"
+          className=" text-sm font-semibold flex items-center data-[current=true]:text-cyan-500"
         >
           <div className="text-lg mr-4">{icon}</div>
           <div className="text-[16px]">{descr}</div>
@@ -45,7 +54,7 @@ export const Menu: FC = () => {
       <div className="w-10/12  mx-auto mt-7">
         <TitleDivider>Menu</TitleDivider>
 
-        <ItemMenu descr="Explorar" current={true} icon={<CgHome />} />
+        <ItemMenu href="/" descr="Explorar" current={true} icon={<CgHome />} />
         <ItemMenu descr="Albuns" icon={<IoAlbumsOutline />} />
         <ItemMenu descr="Favoritos" icon={<FaRegStar />} />
 

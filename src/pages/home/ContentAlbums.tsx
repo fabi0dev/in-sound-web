@@ -11,18 +11,19 @@ export const ContentAlbums: FC = () => {
 
   return (
     <div>
-      <TitleDivider title="Albuns Populares" href="#" className={"mt-5"} />
+      <TitleDivider title="Albuns Populares" href={`#`} className={"mt-5"} />
       <div className="flex gap-5 justify-between overflow-x-hidden">
-        {data?.map((album, key) => {
+        {data?.map(({ id, cover_medium, title, artist }, key) => {
           if (key <= 5) {
             return (
-              <div
+              <a
                 key={key}
+                href={`ViewAlbum?id=${id}`}
                 className="bg bg-slate-900 bg-opacity-50 hover:bg-slate-800 rounded-md p-4 "
               >
                 <div className="content-hover-options text-slate-200">
                   <div
-                    style={{ backgroundImage: `url('${album.cover_medium}')` }}
+                    style={{ backgroundImage: `url('${cover_medium}')` }}
                     className={`h-48 w-48 bg-cover rounded-md`}
                   ></div>
 
@@ -34,14 +35,14 @@ export const ContentAlbums: FC = () => {
 
                   <div>
                     <div className="w-48 mt-4 text-[15px] font-semibold truncate">
-                      {album.title}
+                      {title}
                     </div>
                     <div className="text-slate-600 text-sm font-semibold truncate">
-                      {album.artist.name}
+                      {artist.name}
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
             );
           }
         })}

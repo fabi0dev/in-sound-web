@@ -1,2 +1,4 @@
 import { Home } from "./home";
-export default { Home };
+import { ViewAlbum } from "./ViewAlbum";
+
+export default { Home, ViewAlbum };
