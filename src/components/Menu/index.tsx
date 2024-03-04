@@ -41,7 +41,7 @@ export const Menu: FC = () => {
   };
 
   return (
-    <div className="w-80 h-lvh bg-slate-900 fixed left-0 shadow-lg">
+    <div className="w-80 h-lvh  fixed left-0 ">
       <div className="w-10/12  mx-auto mt-7">
         <TitleDivider>Menu</TitleDivider>
 

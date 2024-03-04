@@ -1,6 +1,7 @@
 import { selectorEditorialChart } from "@/store/reducers/editorialChart";
 import { FC } from "react";
 import { useSelector } from "react-redux";
+import { TitleDivider } from "./TitleDivider";
 
 export const ContentArtists: FC = () => {
   const {
@@ -9,12 +10,7 @@ export const ContentArtists: FC = () => {
 
   return (
     <div>
-      <div className="flex justify-between text-2xl font-bold text-slate-300 my-10">
-        Artistas
-        <a href="#" className="text-[15px]">
-          Ver todos
-        </a>
-      </div>
+      <TitleDivider title="Artistas" href="#" />
       <div className="flex gap-10 overflow-x-hidden">
         {data?.map((artist, key) => {
           return (

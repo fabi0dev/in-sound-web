@@ -1,6 +1,8 @@
 import { selectorEditorialChart } from "@/store/reducers/editorialChart";
 import { FC } from "react";
 import { useSelector } from "react-redux";
+import { TitleDivider } from "./TitleDivider";
+import { PiPlayCircleFill } from "react-icons/pi";
 
 export const ContentAlbums: FC = () => {
   const {
@@ -9,30 +11,39 @@ export const ContentAlbums: FC = () => {
 
   return (
     <div>
-      <div className="flex justify-between text-2xl font-bold text-slate-300 my-10">
-        Albuns
-        <a href="#" className="text-[15px]">
-          Ver todos
-        </a>
-      </div>
-      <div className="flex gap-5 overflow-x-hidden">
+      <TitleDivider title="Albuns Populares" href="#" className={"mt-5"} />
+      <div className="flex gap-5 justify-between overflow-x-hidden">
         {data?.map((album, key) => {
-          return (
-            <div className=" text-slate-200 " key={key}>
+          if (key <= 5) {
+            return (
               <div
-                style={{ backgroundImage: `url('${album.cover_medium}')` }}
-                className={`h-56 w-56 bg-cover rounded-md`}
-              ></div>
-              <div>
-                <div className="w-56 mt-4 text-[15px] font-semibold truncate">
-                  {album.title}
-                </div>
-                <div className="text-slate-600 mt-1 text-sm font-semibold">
-                  {album.artist.name}
+                key={key}
+                className="bg bg-slate-900 bg-opacity-50 hover:bg-slate-800 rounded-md p-4 "
+              >
+                <div className="content-hover-options text-slate-200">
+                  <div
+                    style={{ backgroundImage: `url('${album.cover_medium}')` }}
+                    className={`h-48 w-48 bg-cover rounded-md`}
+                  ></div>
+
+                  <div className="hover-options text-cyan-400 flex justify-end">
+                    <a className="cursor-pointer">
+                      <PiPlayCircleFill className="icon" />
+                    </a>
+                  </div>
+
+                  <div>
+                    <div className="w-48 mt-4 text-[15px] font-semibold truncate">
+                      {album.title}
+                    </div>
+                    <div className="text-slate-600 text-sm font-semibold truncate">
+                      {album.artist.name}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
+            );
+          }
         })}
       </div>
     </div>
