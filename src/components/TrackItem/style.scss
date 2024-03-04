@@ -1,0 +1,11 @@
+.track-album{
+  .icon{
+    opacity: 0;
+    cursor: pointer;
+  }
+  &:hover{
+    .icon{
+      opacity: 1;
+    }
+  }
+}

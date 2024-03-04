@@ -1,8 +1,6 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -48,16 +46,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const Comp = asChild ? Slot : "button";
     return (
-      <motion.button whileTap={{ scale: 0.95 }}>
-        <Comp
-          className={cn(buttonVariants({ variant, size, className }))}
-          ref={ref}
-          {...props}
-        >
-          <span className="mr-4 text-sm">{icon}</span>
-          {children}
-        </Comp>
-      </motion.button>
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      >
+        <span className="mr-4 text-sm">{icon}</span>
+        {children}
+      </Comp>
     );
   }
 );

@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components";
 import { FC } from "react";
 
-export const SkeletonAlbum: FC = () => {
+export const SkeletonPlaylist: FC = () => {
   return (
     <>
       <div className="flex mt-7 ">

@@ -1,11 +1,10 @@
-import { Button, Container } from "@/components";
+import { Button, Container, TrackItem } from "@/components";
 import { deezer } from "@/services/DeezerAPI";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { FaPlay } from "react-icons/fa6";
-import { SkeletonAlbum } from "./SkeletonAlbum";
-import { FaRegHeart } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
+import { SkeletonPlaylist } from "./SkeletonPlaylist";
 
 interface IPlaylist {
   id: number;
@@ -66,7 +65,7 @@ export const ViewPlaylist: FC = () => {
 
   return (
     <Container className="text-slate-200">
-      {loading && <SkeletonAlbum />}
+      {loading && <SkeletonPlaylist />}
       {!loading && (
         <div>
           <div className="flex mt-7">
@@ -101,37 +100,7 @@ export const ViewPlaylist: FC = () => {
             </div>
 
             {data?.tracks.data.map((track, key) => {
-              return (
-                <div
-                  key={key}
-                  className="grid grid-cols-4 hover:bg-slate-900 p-3 cursor-default"
-                >
-                  <div className="flex ">
-                    <div
-                      className="w-8 h-8 bg-cover rounded-sm "
-                      style={{
-                        backgroundImage: `url(${track.album.cover_medium})`,
-                      }}
-                    ></div>
-                    <div className="truncate ml-3 flex">
-                      <div className="mr-2">{key + 1}. </div>
-                      <div>
-                        <div>{track.title}</div>
-                        <div className="text-xs text-slate-400">
-                          {track.artist.name}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex text-xl justify-center items-center">
-                    <FaRegHeart />
-                  </div>
-
-                  <div>{track.album.title}</div>
-
-                  <div>0:30</div>
-                </div>
-              );
+              return <TrackItem data={track} index={key} key={key} />;
             })}
           </div>
         </div>

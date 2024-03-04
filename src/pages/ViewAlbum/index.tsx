@@ -1,10 +1,9 @@
-import { Button, Container } from "@/components";
+import { Button, Container, TrackItem } from "@/components";
 import { deezer } from "@/services/DeezerAPI";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { FaPlay } from "react-icons/fa6";
 import { SkeletonAlbum } from "./SkeletonAlbum";
-import { FaRegHeart } from "react-icons/fa";
 
 interface IALbum {
   artist: {
@@ -29,6 +28,15 @@ interface IALbum {
       artist: {
         id: number;
         name: string;
+      };
+      album: {
+        id: number;
+        title: string;
+        cover: string;
+        cover_big: string;
+        cover_medium: string;
+        cover_small: string;
+        cover_xl: string;
       };
     }>;
   };
@@ -102,26 +110,7 @@ export const ViewAlbum: FC = () => {
             </div>
 
             {data?.tracks.data.map((track, key) => {
-              return (
-                <div
-                  key={key}
-                  className="grid grid-cols-3 hover:bg-slate-900 p-3 cursor-default"
-                >
-                  <div className="flex ">
-                    <div
-                      className="w-8 h-8 bg-cover rounded-sm "
-                      style={{ backgroundImage: `url(${data.cover_medium})` }}
-                    ></div>
-                    <div className="truncate ml-3 ">
-                      {key + 1}. {track.title}
-                    </div>
-                  </div>
-                  <div className="flex text-xl justify-center items-center">
-                    <FaRegHeart />
-                  </div>
-                  <div>0:30</div>
-                </div>
-              );
+              return <TrackItem data={track} index={key} key={key} />;
             })}
           </div>
         </div>
