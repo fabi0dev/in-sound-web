@@ -15,7 +15,6 @@ export const AllTracks: FC = () => {
     const { tracks } = await deezer.getEditorialChart();
     setLoading(false);
     setData(tracks.data);
-    console.log(tracks);
   }, []);
 
   useEffect(() => {

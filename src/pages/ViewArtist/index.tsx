@@ -70,8 +70,6 @@ export const ViewArtist: FC = () => {
     getData();
   }, [getData]);
 
-  console.log(data);
-
   return (
     <Container className="text-slate-200">
       {loading && <SkeletonPlaylist />}

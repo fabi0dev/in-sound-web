@@ -3,7 +3,7 @@ import { FC } from "react";
 
 interface TitleDividerProps {
   title: string;
-  href: string;
+  href?: string;
   className?: string;
 }
 

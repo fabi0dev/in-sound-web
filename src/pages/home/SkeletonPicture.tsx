@@ -3,7 +3,7 @@ import { FC } from "react";
 
 export const SkeletonPicture: FC = () => {
   return (
-    <div>
+    <div className="flex gap-5">
       <SkeletonItemPicture />
       <SkeletonItemPicture />
       <SkeletonItemPicture />

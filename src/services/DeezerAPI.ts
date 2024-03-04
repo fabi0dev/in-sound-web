@@ -55,9 +55,9 @@ const deezer = {
       console.log("error load search album", error);
     }
   },
-  getEditorialChart: async (genre: number = 0) => {
+  getEditorialChart: async (id: string | null = "0") => {
     try {
-      const { data } = await api.get(`editorial/${genre}/charts`);
+      const { data } = await api.get(`editorial/${id}/charts`);
 
       return data;
     } catch (error) {
@@ -102,9 +102,9 @@ const deezer = {
       console.log("error load track artist", error);
     }
   },
-  getGenre: async () => {
+  getGenre: async (id: string | null = "") => {
     try {
-      const { data } = await api.get(`genre`);
+      const { data } = await api.get(`genre/${id}`);
 
       return data;
     } catch (error) {

@@ -1,14 +1,13 @@
 import { FC, useEffect, useRef } from "react";
 import { FaPlayCircle } from "react-icons/fa";
 import { FaPauseCircle } from "react-icons/fa";
-
 import { IoPlaySkipBack } from "react-icons/io5";
 import { IoPlaySkipForward } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import {
   nextTrack,
   prevTrack,
-  selectorplayer,
+  selectorPlayer,
   setPaused,
 } from "@/store/reducers/player";
 import { motion } from "framer-motion";
@@ -21,7 +20,7 @@ export const Player: FC = () => {
     paused,
     volume,
     currentTime,
-  } = useSelector(selectorplayer);
+  } = useSelector(selectorPlayer);
 
   const audio = useRef(new Audio());
   const player = audio.current;
@@ -46,7 +45,7 @@ export const Player: FC = () => {
 
   useEffect(() => {
     player.currentTime = currentTime;
-  }, [player]);
+  }, [title, player]);
 
   useEffect(() => {
     if (paused) {

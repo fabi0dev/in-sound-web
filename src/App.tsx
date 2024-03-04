@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./store/store";
 import Routers from "./routers";
+import { Player } from "./components";
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <Routers />
       </PersistGate>
+
+      <Player />
     </Provider>
   );
 }

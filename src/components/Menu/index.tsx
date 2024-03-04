@@ -4,6 +4,7 @@ import { IoAlbumsOutline } from "react-icons/io5";
 import { BiSolidPlaylist } from "react-icons/bi";
 import { IoStar } from "react-icons/io5";
 import { RiNeteaseCloudMusicLine } from "react-icons/ri";
+import { useLocation } from "react-router-dom";
 
 interface TitleDividerProps {
   children: string;
@@ -17,6 +18,8 @@ type ItemMenuProps = {
 };
 
 export const Menu: FC = () => {
+  const location = useLocation();
+
   const TitleDivider: FC<TitleDividerProps> = ({ children }) => {
     return (
       <div className="flex my-10">
@@ -27,12 +30,8 @@ export const Menu: FC = () => {
     );
   };
 
-  const ItemMenu: FC<ItemMenuProps> = ({
-    descr,
-    icon,
-    href,
-    current = false,
-  }) => {
+  const ItemMenu: FC<ItemMenuProps> = ({ descr, icon, href }) => {
+    const current = location.pathname.replace("/", "#") == href;
     return (
       <a
         href={href}
@@ -58,13 +57,13 @@ export const Menu: FC = () => {
         </a>
         <TitleDivider>Menu</TitleDivider>
 
-        <ItemMenu href="/" descr="Explorar" current={true} icon={<CgHome />} />
+        <ItemMenu href="#" descr="Explorar" icon={<CgHome />} />
         <ItemMenu descr="Albuns" icon={<IoAlbumsOutline />} />
 
         <TitleDivider>Biblioteca</TitleDivider>
 
         <ItemMenu descr="Minha Playlist" icon={<BiSolidPlaylist />} />
-        <ItemMenu descr="Favoritas" icon={<IoStar />} />
+        <ItemMenu href="#ViewFavorites" descr="Favoritas" icon={<IoStar />} />
       </div>
     </div>
   );

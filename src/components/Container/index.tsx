@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { FC } from "react";
-import { Header, Menu, Player } from "..";
+import { Header, Menu } from "..";
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -19,8 +19,6 @@ export const Container: FC<ContainerProps> = ({ children, className }) => {
           <div>{children}</div>
         </div>
       </div>
-
-      <Player />
 
       <div
         className="fixed inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"

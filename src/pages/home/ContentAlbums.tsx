@@ -24,7 +24,7 @@ export const ContentAlbums: FC = () => {
           if (key <= 5) {
             return (
               <ItemPicture
-                href={`ViewAlbum?id=${data.id}`}
+                href={`#ViewAlbum?id=${data.id}`}
                 data={data}
                 key={key}
               />

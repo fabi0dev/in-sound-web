@@ -1,10 +1,15 @@
 import { FC } from "react";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { FaPlay } from "react-icons/fa";
 
 import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { selectorplayer, setPaused, setTrack } from "@/store/reducers/player";
+import { selectorPlayer, setPaused, setTrack } from "@/store/reducers/player";
+import {
+  addTrack,
+  removeTrack,
+  selectFavorites,
+} from "@/store/reducers/favorites";
 
 interface TrackItemProps {
   data: {
@@ -36,15 +41,30 @@ export const TrackItem: FC<TrackItemProps> = ({
   ...props
 }) => {
   const dispatch = useDispatch();
-  const {
-    current: { id },
-    paused,
-  } = useSelector(selectorplayer);
+  const { current, paused } = useSelector(selectorPlayer);
+  const { tracks } = useSelector(selectFavorites);
+
+  const favoriteMusic = async () => {
+    if (!favCheck()) {
+      dispatch(addTrack(data));
+    } else {
+      dispatch(removeTrack(data));
+    }
+  };
+
+  const favCheck = () => {
+    const isFav = tracks.filter((item) => item.id == data.id);
+
+    if (isFav.length > 0) {
+      return true;
+    }
+    return false;
+  };
 
   return (
     <div
       {...props}
-      data-current={id == data.id ? true : false}
+      data-current={current.id == data.id ? true : false}
       className="grid grid-cols-4 hover:bg-slate-900 p-3 cursor-default data-[current=true]:text-cyan-500"
     >
       <div className="flex">
@@ -55,7 +75,7 @@ export const TrackItem: FC<TrackItemProps> = ({
           }}
           onClick={() => {
             dispatch(setTrack(data));
-            if (data.id == id) {
+            if (data.id == current.id) {
               dispatch(setPaused(!paused));
             }
           }}
@@ -77,8 +97,12 @@ export const TrackItem: FC<TrackItemProps> = ({
           </div>
         </div>
       </div>
+
       <div className="flex text-xl justify-center items-center">
-        <FaRegHeart />
+        <span onClick={() => favoriteMusic()}>
+          {!favCheck() && <FaRegHeart />}
+          {favCheck() && <FaHeart />}
+        </span>
       </div>
 
       <div>

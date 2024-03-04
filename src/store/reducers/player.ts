@@ -30,7 +30,7 @@ interface PlayerProps {
 }
 
 const initialState = {
-  volume: 0.2,
+  volume: 0.5,
   currentTime: 0,
   current: {
     id: 0,
@@ -41,6 +41,12 @@ export const slice = createSlice({
   name: "player",
   initialState,
   reducers: {
+    setAudioHTML: (state, { payload }) => {
+      return {
+        ...state,
+        audioHTML: payload,
+      };
+    },
     setTrack: (state, { payload }) => {
       return {
         ...state,
@@ -69,7 +75,6 @@ export const slice = createSlice({
         currentTime: payload,
       };
     },
-
     prevTrack: (state) => {
       const { playlist, current } = state as PlayerProps;
       let prev = {};
@@ -85,7 +90,6 @@ export const slice = createSlice({
         current: prev as TrackProps,
       };
     },
-
     nextTrack: (state) => {
       const { playlist, current } = state as PlayerProps;
       let next = {};
@@ -94,7 +98,6 @@ export const slice = createSlice({
           next = playlist[index + 1] || playlist[playlist.length - 1];
         }
       });
-      console.log(next);
 
       return {
         ...state,
@@ -114,5 +117,5 @@ export const {
   prevTrack,
 } = slice.actions;
 export default slice.reducer;
-export const selectorplayer = (state: { player: PlayerProps }): PlayerProps =>
+export const selectorPlayer = (state: { player: PlayerProps }): PlayerProps =>
   state.player;

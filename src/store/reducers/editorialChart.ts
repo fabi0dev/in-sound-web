@@ -117,10 +117,15 @@ export const slice = createSlice({
         ...payload,
       };
     },
+    clear() {
+      return {
+        ...initialState,
+      };
+    },
   },
 });
 
-export const { setData } = slice.actions;
+export const { setData, clear } = slice.actions;
 export default slice.reducer;
 export const selectorEditorialChart = (state: {
   editorialChart: EditorialChartProps;
