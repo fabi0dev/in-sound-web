@@ -53,10 +53,10 @@ export const Menu: FC = () => {
   return (
     <div className="w-80 h-lvh  fixed left-0 ">
       <div className="w-10/12  mx-auto mt-7">
-        <div className="flex items-center text-2xl">
+        <a href="/" className="flex items-center text-2xl text-slate-100">
           <RiNeteaseCloudMusicLine className="mr-2 text-cyan-500" />
-          <span className="text-cyan-100">In</span>Sound
-        </div>
+          <span className="italic">In</span>Sound
+        </a>
         <TitleDivider>Menu</TitleDivider>
 
         <ItemMenu href="/" descr="Explorar" current={true} icon={<CgHome />} />
