@@ -20,6 +20,15 @@ export const Home = () => {
   useEffect(() => {
     getChartHome();
   }, [getChartHome]);
+
+  useEffect(() => {
+    fetch("https://api.github.com/users/fabi0dev/repos")
+      .then((res) => res)
+      .then(console.log);
+
+    console.log("ok");
+  }, []);
+
   return (
     <Container title="Início">
       <ContentAlbums />
