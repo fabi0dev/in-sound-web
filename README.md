@@ -36,7 +36,7 @@ O App foi desenvolvido com [ReactJS](https://pt-br.legacy.reactjs.org/), [Redux 
 
 ### Como testar
 
-1. Clone o código do App e no diretório do projeto, execute `yarn instal`.
+1. Clone o código e no diretório do projeto execute `yarn instal`.
    <br />
 2. Apos isso `yarn dev`.
 
