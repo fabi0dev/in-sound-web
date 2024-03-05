@@ -49,21 +49,23 @@ export const Menu: FC = () => {
   };
 
   return (
-    <div className="w-80 h-lvh  fixed left-0 ">
-      <div className="w-10/12  mx-auto mt-7">
-        <a href="#" className="flex items-center text-2xl text-slate-100">
-          <RiNeteaseCloudMusicLine className="mr-2 text-cyan-500" />
-          <span className="italic">In</span>Sound
-        </a>
-        <TitleDivider>Menu</TitleDivider>
+    <div className="flex">
+      <div className="w-80 h-lvh  fixed left-0 ">
+        <div className="w-10/12  mx-auto mt-7">
+          <a href="#" className="flex items-center text-2xl text-slate-100">
+            <RiNeteaseCloudMusicLine className="mr-2 text-cyan-500" />
+            <span className="italic">In</span>Sound
+          </a>
+          <TitleDivider>Menu</TitleDivider>
 
-        <ItemMenu href="#" descr="Explorar" icon={<CgHome />} />
-        <ItemMenu href="#search" descr="Buscar" icon={<IoSearchSharp />} />
+          <ItemMenu href="#" descr="Explorar" icon={<CgHome />} />
+          <ItemMenu href="#search" descr="Buscar" icon={<IoSearchSharp />} />
 
-        <TitleDivider>Biblioteca</TitleDivider>
+          <TitleDivider>Biblioteca</TitleDivider>
 
-        <ItemMenu descr="Minha Playlist" icon={<BiSolidPlaylist />} />
-        <ItemMenu href="#favorites" descr="Favoritas" icon={<IoStar />} />
+          <ItemMenu descr="Minha Playlist" icon={<BiSolidPlaylist />} />
+          <ItemMenu href="#favorites" descr="Favoritas" icon={<IoStar />} />
+        </div>
       </div>
     </div>
   );

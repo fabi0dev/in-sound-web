@@ -1,4 +1,3 @@
-import { Header } from "./Header";
 import { Container } from "./Container";
 import { Menu } from "./Menu";
 import { Input } from "./Input";
@@ -14,7 +13,6 @@ import { Tabs } from "./Tabs";
 import { ItemPictureArtist } from "./ItemPictureArtist";
 
 export {
-  Header,
   Container,
   Menu,
   Input,

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { FC, useEffect } from "react";
-import { Header, Menu } from "..";
+import { Menu } from "..";
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -23,8 +23,6 @@ export const Container: FC<ContainerProps> = ({
 
       <div className="w-auto ml-80 pb-32">
         <div className="w-[95%] mx-auto">
-          <Header />
-
           <div>{children}</div>
         </div>
       </div>
