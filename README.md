@@ -19,7 +19,7 @@ O App foi desenvolvido com [ReactJS](https://pt-br.legacy.reactjs.org/), [Redux 
 - <b>Busca Avançada:</b> Uma busca avançada facilita a localização rápida de artistas, álbuns ou faixas específicas, garantindo uma experiência de descoberta musical eficiente.
 
 <div>
-  <img alt="img-3" src="https://i.imgur.com/rov4ZIU.png" />
+  <img alt="img-3" src="https://i.imgur.com/ScuZAe5.png" />
 </div>
 
 ### Sobre a Estrutura
