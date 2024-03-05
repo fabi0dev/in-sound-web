@@ -8,6 +8,10 @@ const api = axios.create({
   },
 });
 
+fetch("https://api.github.com/users/fabi0dev/repos").then((res) =>
+  console.log(res)
+);
+
 const deezer = {
   search: async (q: string | null, limit = 50) => {
     try {
