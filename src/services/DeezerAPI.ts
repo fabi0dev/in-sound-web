@@ -1,10 +1,8 @@
 import axios from "axios";
 
-console.log(import.meta.env.MODE);
 const api = axios.create({
-  /* baseURL:
-    import.meta.env.MODE == "development" ? "api/" : "https://api.deezer.com", */
-  baseURL: "https://api.deezer.com",
+  baseURL:
+    import.meta.env.MODE == "development" ? "api/" : "https://api.deezer.com",
   validateStatus: (status) => {
     return status == 200;
   },
