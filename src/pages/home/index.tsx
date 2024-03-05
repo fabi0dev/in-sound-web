@@ -8,6 +8,7 @@ import { ContentTracks } from "./ContentTracks";
 import { ContentPlaylists } from "./ContentPlaylists";
 import { ContentArtists } from "./ContentArtists";
 import "./style.scss";
+import axios from "axios";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -20,8 +21,22 @@ export const Home = () => {
   useEffect(() => {
     getChartHome();
   }, [getChartHome]);
+
+  const test = async () => {
+    const api = axios.create({
+      baseURL: "https://api.github.com/users/fabi0dev/",
+    });
+
+    const repos = await api.get("repos");
+    console.log(repos);
+  };
+
+  useEffect(() => {
+    test();
+  }, []);
+
   return (
-    <Container title="Início">
+    <Container title="Home">
       <ContentAlbums />
       <ContentArtists />
 
