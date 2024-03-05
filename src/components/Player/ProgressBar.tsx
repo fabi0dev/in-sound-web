@@ -42,7 +42,6 @@ export const ProgressBar: FC<ProgressBarProps> = ({ player }) => {
       <Slider
         minStepsBetweenThumbs={0}
         value={[sliderValue]}
-        max={100}
         className="mx-2"
       />
       <span>{convertTime(durationTotal)}</span>

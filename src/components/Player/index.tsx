@@ -1,7 +1,13 @@
 import { FC, useEffect, useRef } from "react";
 import { FaPlayCircle } from "react-icons/fa";
 import { FaPauseCircle } from "react-icons/fa";
-import { IoPlaySkipBack } from "react-icons/io5";
+import {
+  IoPlaySkipBack,
+  IoVolumeHigh,
+  IoVolumeLowSharp,
+  IoVolumeMedium,
+  IoVolumeOff,
+} from "react-icons/io5";
 import { IoPlaySkipForward } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,9 +15,14 @@ import {
   prevTrack,
   selectorPlayer,
   setPaused,
+  setVolume,
 } from "@/store/reducers/player";
 import { motion } from "framer-motion";
 import { ProgressBar } from "./ProgressBar";
+import { Popover } from "..";
+import { PopoverContent, PopoverTrigger } from "../Popover";
+import { Slider } from "../Slider";
+import { GiFire } from "react-icons/gi";
 
 export const Player: FC = () => {
   const dispatch = useDispatch();
@@ -35,13 +46,16 @@ export const Player: FC = () => {
 
   useEffect(() => {
     player.src = preview;
-    player.volume = volume;
     player.play();
 
     return () => {
       player.src = "";
     };
-  }, [title, preview, player, volume]);
+  }, [title, preview, player]);
+
+  useEffect(() => {
+    player.volume = volume;
+  }, [title, volume]);
 
   useEffect(() => {
     player.currentTime = currentTime;
@@ -72,6 +86,7 @@ export const Player: FC = () => {
             </div>
           )}
         </div>
+
         <div className="justify-center items-center text-slate-200  ">
           <div className="flex justify-center items-center  mb-2">
             <motion.button
@@ -102,6 +117,54 @@ export const Player: FC = () => {
           </div>
 
           <ProgressBar player={player} />
+        </div>
+
+        <div className="flex justify-end">
+          <div className="flex gap-4">
+            <Popover>
+              <PopoverContent>
+                <Slider
+                  defaultValue={[volume]}
+                  max={1}
+                  step={0.05}
+                  onValueChange={(val) => dispatch(setVolume(val[0]))}
+                />
+              </PopoverContent>
+              <PopoverTrigger>
+                {volume == 0 && (
+                  <IoVolumeOff className="w-7 h-7 text-slate-400" />
+                )}
+
+                {volume > 0 && volume <= 0.3 && (
+                  <IoVolumeLowSharp className="w-7 h-7 text-slate-400" />
+                )}
+
+                {volume > 0.3 && volume <= 0.7 && (
+                  <IoVolumeMedium className="w-7 h-7 text-slate-400" />
+                )}
+
+                {volume > 0.7 && (
+                  <IoVolumeHigh className="w-7 h-7 text-slate-400" />
+                )}
+              </PopoverTrigger>
+            </Popover>
+
+            <Popover>
+              <PopoverTrigger>
+                <GiFire className="w-6 h-6 text-emerald-700 hover:text-emerald-500" />
+              </PopoverTrigger>
+              <PopoverContent>
+                Desenvolvido por{" "}
+                <a
+                  href="https://fabioalves.site/"
+                  target="_blank"
+                  className="text-emerald-500 underline"
+                >
+                  Fábio Alves
+                </a>
+              </PopoverContent>
+            </Popover>
+          </div>
         </div>
       </div>
     </div>

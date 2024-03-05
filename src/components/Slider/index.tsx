@@ -16,7 +16,7 @@ const Slider = React.forwardRef<
     {...props}
   >
     <SliderPrimitive.Track className="relative h-1 w-full grow overflow-hidden rounded-full bg-slate-700">
-      <SliderPrimitive.Range className="absolute h-full bg-slate-300" />
+      <SliderPrimitive.Range className="absolute h-full bg-cyan-700" />
     </SliderPrimitive.Track>
     <SliderPrimitive.Thumb
       className={`block h-5 w-5 rounded-full 

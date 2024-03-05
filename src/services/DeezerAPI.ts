@@ -8,7 +8,7 @@ const api = axios.create({
 });
 
 const deezer = {
-  search: async (q: string, limit = 25) => {
+  search: async (q: string | null, limit = 50) => {
     try {
       const { data } = await api.get("search", {
         params: {
@@ -22,7 +22,7 @@ const deezer = {
       console.log("error search", error);
     }
   },
-  searchPlaylist: async (q: string, limit = 10) => {
+  searchPlaylist: async (q: string | null, limit = 50) => {
     try {
       const { data } = await api.get(`search/playlist`, {
         params: { q, limit },
@@ -33,7 +33,7 @@ const deezer = {
       console.log("error load search playlist", error);
     }
   },
-  searchAlbum: async (q: string, limit = 10) => {
+  searchAlbum: async (q: string | null, limit = 50) => {
     try {
       const { data } = await api.get(`search/album`, {
         params: { q, limit },
@@ -44,7 +44,7 @@ const deezer = {
       console.log("error load search album", error);
     }
   },
-  searchArtist: async (q: string, limit = 10) => {
+  searchArtist: async (q: string | null, limit = 50) => {
     try {
       const { data } = await api.get(`search/artist`, {
         params: { q, limit },

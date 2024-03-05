@@ -15,7 +15,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           text-slate-100
           bg-background px-3 py-2 
           text-sm ring-offset-background 
-          placeholder:text-slate-400 
+          placeholder:text-slate-600 
           focus-visible:outline-none 
           focus-visible:ring-2 
           focus-visible:ring-ring 

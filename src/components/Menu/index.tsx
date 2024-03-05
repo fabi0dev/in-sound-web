@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import { CgHome } from "react-icons/cg";
-import { IoAlbumsOutline } from "react-icons/io5";
+import { IoSearchSharp } from "react-icons/io5";
 import { BiSolidPlaylist } from "react-icons/bi";
 import { IoStar } from "react-icons/io5";
 import { RiNeteaseCloudMusicLine } from "react-icons/ri";
@@ -58,12 +58,12 @@ export const Menu: FC = () => {
         <TitleDivider>Menu</TitleDivider>
 
         <ItemMenu href="#" descr="Explorar" icon={<CgHome />} />
-        <ItemMenu descr="Albuns" icon={<IoAlbumsOutline />} />
+        <ItemMenu href="#search" descr="Buscar" icon={<IoSearchSharp />} />
 
         <TitleDivider>Biblioteca</TitleDivider>
 
         <ItemMenu descr="Minha Playlist" icon={<BiSolidPlaylist />} />
-        <ItemMenu href="#ViewFavorites" descr="Favoritas" icon={<IoStar />} />
+        <ItemMenu href="#favorites" descr="Favoritas" icon={<IoStar />} />
       </div>
     </div>
   );

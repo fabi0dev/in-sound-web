@@ -15,9 +15,9 @@ export const ContentGenres: FC = () => {
 
   return (
     <div>
-      <TitleDivider title="Gêneros" />
+      <TitleDivider title="Todos os gostos musicais" />
 
-      <div className="flex flex-wrap gap-5 justify-between">
+      <div className="flex flex-wrap gap-5 justify-start">
         {genres.map(({ id, name, picture_medium }, index) => {
           return (
             <a
@@ -31,11 +31,11 @@ export const ContentGenres: FC = () => {
                   style={{
                     backgroundImage: `url('${picture_medium}')`,
                   }}
-                  className={`h-20 w-36 bg-cover bg-center rounded-2xl`}
+                  className={`h-36 w-48 bg-cover bg-center rounded-2xl`}
                 ></div>
 
                 <div>
-                  <div className="w-36 mt-4 text-[15px] font-semibold truncate">
+                  <div className="w-48 mt-4 text-[15px] font-semibold truncate">
                     {name}
                   </div>
                 </div>

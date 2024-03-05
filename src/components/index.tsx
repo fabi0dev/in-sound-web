@@ -9,6 +9,8 @@ import { TrackItem } from "./TrackItem";
 import { ItemPicture } from "./ItemPicture";
 import { TitleDivider } from "./TitleDivider";
 import { TitleMin } from "./TitleMin";
+import { Popover } from "./Popover";
+import { Tabs } from "./Tabs";
 
 export {
   Header,
@@ -22,4 +24,6 @@ export {
   ItemPicture,
   TitleMin,
   TitleDivider,
+  Popover,
+  Tabs,
 };

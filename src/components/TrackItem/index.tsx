@@ -10,6 +10,7 @@ import {
   removeTrack,
   selectFavorites,
 } from "@/store/reducers/favorites";
+import { cn } from "@/lib/utils";
 
 interface TrackItemProps {
   data: {
@@ -32,12 +33,14 @@ interface TrackItemProps {
       cover_xl: string;
     };
   };
-  index: number;
+  index: number | null;
+  basic?: boolean;
 }
 
 export const TrackItem: FC<TrackItemProps> = ({
   data,
   index = 0,
+  basic,
   ...props
 }) => {
   const dispatch = useDispatch();
@@ -65,11 +68,16 @@ export const TrackItem: FC<TrackItemProps> = ({
     <div
       {...props}
       data-current={current.id == data.id ? true : false}
-      className="grid grid-cols-4 hover:bg-slate-900 p-3 cursor-default data-[current=true]:text-cyan-500"
+      data-basic={basic}
+      className={cn(
+        "data-[basic=true]:grid-cols-2 text-slate-200",
+        "grid grid-cols-4 hover:bg-slate-900 p-3 cursor-default",
+        "data-[current=true]:text-cyan-500"
+      )}
     >
       <div className="flex">
         <div
-          className="track-album w-8 h-8 bg-cover rounded-sm items-center justify-center flex"
+          className="track-album w-10 h-10 bg-cover rounded-sm items-center justify-center flex"
           style={{
             backgroundImage: `url(${data.album.cover_medium})`,
           }}
@@ -82,10 +90,10 @@ export const TrackItem: FC<TrackItemProps> = ({
         >
           <FaPlay className="icon w-6 h-6" />
         </div>
-        <div className="truncate ml-3 flex">
-          <div className="mr-2">{index + 1}. </div>
+        <div className="ml-3 flex">
+          {index != null && <div className="mr-2">{index + 1}. </div>}
           <div>
-            <div>{data.title}</div>
+            <div className="truncate w-full">{data.title}</div>
             <div className="text-xs text-slate-400">
               <a
                 href={`#ViewArtist?id=${data.artist.id}`}
@@ -98,20 +106,27 @@ export const TrackItem: FC<TrackItemProps> = ({
         </div>
       </div>
 
-      <div className="flex text-xl justify-center items-center">
-        <span onClick={() => favoriteMusic()}>
-          {!favCheck() && <FaRegHeart />}
-          {favCheck() && <FaHeart />}
-        </span>
-      </div>
+      {!basic && (
+        <div className="flex text-xl justify-center items-center">
+          <span onClick={() => favoriteMusic()}>
+            {!favCheck() && <FaRegHeart />}
+            {favCheck() && <FaHeart />}
+          </span>
+        </div>
+      )}
 
-      <div>
-        <a href={`#ViewAlbum?id=${data.album.id}`} className="hover:underline">
-          {data.album.title}
-        </a>
-      </div>
+      {!basic && (
+        <div>
+          <a
+            href={`#ViewAlbum?id=${data.album.id}`}
+            className="hover:underline"
+          >
+            {data.album.title}
+          </a>
+        </div>
+      )}
 
-      <div>0:30</div>
+      <div className="w-5">0:30</div>
     </div>
   );
 };

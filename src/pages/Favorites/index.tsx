@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPlaylist } from "@/store/reducers/player";
 import { selectFavorites } from "@/store/reducers/favorites";
 
-export const ViewFavorites: FC = () => {
+export const Favorites: FC = () => {
   const dispatch = useDispatch();
   const { tracks } = useSelector(selectFavorites);
 
@@ -31,6 +31,10 @@ export const ViewFavorites: FC = () => {
           {tracks?.map((track, key) => {
             return <TrackItem data={track} index={key} key={key} />;
           })}
+
+          {tracks?.length == 0 && (
+            <div className="text-center text-sm">Nenhuma favorita ainda.</div>
+          )}
         </div>
       </div>
     </Container>

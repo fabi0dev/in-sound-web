@@ -119,6 +119,7 @@ export const ViewAlbum: FC = () => {
             <div className="grid grid-cols-4 border-b-[1px] mb-5 mt-10 p-3 text-[15px]">
               <div>Músicas</div>
               <div></div>
+              <div>Album</div>
               <div>Duração</div>
             </div>
 

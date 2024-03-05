@@ -75,14 +75,24 @@ export const slice = createSlice({
         currentTime: payload,
       };
     },
+    setVolume: (state, { payload }) => {
+      return {
+        ...state,
+        volume: payload,
+      };
+    },
     prevTrack: (state) => {
       const { playlist, current } = state as PlayerProps;
-      let prev = {};
+      let prev: TrackProps | null = null;
       playlist.map((track, index) => {
         if (track.id == current.id) {
           prev = playlist[index - 1] || playlist[0];
         }
       });
+
+      if (!prev == null && playlist.length > 0) {
+        prev = playlist[0];
+      }
 
       return {
         ...state,
@@ -92,12 +102,16 @@ export const slice = createSlice({
     },
     nextTrack: (state) => {
       const { playlist, current } = state as PlayerProps;
-      let next = {};
+      let next: TrackProps | null = null;
       playlist.map((track, index) => {
         if (track.id == current.id) {
           next = playlist[index + 1] || playlist[playlist.length - 1];
         }
       });
+
+      if (!next == null && playlist.length > 0) {
+        next = playlist[0];
+      }
 
       return {
         ...state,
@@ -115,6 +129,7 @@ export const {
   setCurrentTime,
   nextTrack,
   prevTrack,
+  setVolume,
 } = slice.actions;
 export default slice.reducer;
 export const selectorPlayer = (state: { player: PlayerProps }): PlayerProps =>

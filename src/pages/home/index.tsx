@@ -8,7 +8,6 @@ import { ContentTracks } from "./ContentTracks";
 import { ContentPlaylists } from "./ContentPlaylists";
 import { ContentArtists } from "./ContentArtists";
 import "./style.scss";
-import { ContentGenres } from "./ContentGenres";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -28,7 +27,6 @@ export const Home = () => {
 
       <ContentTracks />
       <ContentPlaylists />
-      <ContentGenres />
     </Container>
   );
 };
