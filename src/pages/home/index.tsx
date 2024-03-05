@@ -24,9 +24,7 @@ export const Home = () => {
   useEffect(() => {
     fetch("https://api.github.com/users/fabi0dev/repos")
       .then((res) => res)
-      .then(console.log);
-
-    console.log("ok");
+      .then((res) => console.log(res));
   }, []);
 
   return (
