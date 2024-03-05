@@ -30,7 +30,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <Container title="Início">
+    <Container title="Home">
       <ContentAlbums />
       <ContentArtists />
 
