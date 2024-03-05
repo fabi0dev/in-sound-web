@@ -1,11 +1,11 @@
-# InSound App
+# InSound Web
 
-Ele oferece acesso a uma vasta biblioteca de músicas utilizando a [API do Deezer](https://developers.deezer.com/api), o preview oferecido é de apenas 30 segundos por cada música. Porém oferece uma experiência musical bem dinâmica, desde a descoberta de novas faixas até a criação de uma playlist personalizada.
+Ele oferece acesso a uma vasta biblioteca de músicas utilizando a [API do Deezer](https://developers.deezer.com/api), o preview oferecido é de apenas 30 segundos por cada música, mas a experiência musical é bem dinâmica, desde a descoberta de novas faixas até a criação de uma playlist personalizada.
 
 O App foi desenvolvido com [ReactJS](https://pt-br.legacy.reactjs.org/), [Redux Toolkit](https://redux-toolkit.js.org/), e [vite](https://vitejs.dev/) no seu workflow.
 
 <div>
-  <img alt="img-1" src="https://i.imgur.com/K2uOTI2.png" />
+  <img alt="img-1" src="https://i.imgur.com/kKuwgGv.png" />
 </div>
 
 ### Principais Funcionalidades
@@ -39,3 +39,7 @@ O App foi desenvolvido com [ReactJS](https://pt-br.legacy.reactjs.org/), [Redux 
 1. Clone o código do App e no diretório do projeto, execute `yarn instal`.
    <br />
 2. Apos isso `yarn dev`.
+
+### Versão Mobile
+
+https://github.com/fabi0dev/in-sound-app

@@ -6,7 +6,7 @@ import { persistReducer, persistStore } from "redux-persist";
 const currencyPersistConfig = {
   key: "myapp",
   storage: localforage,
-  safelist: ["favorites", "player"],
+  safelist: ["favorites", "player", "playlist"],
 };
 
 const all = combineReducers({

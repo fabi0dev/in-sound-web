@@ -63,7 +63,11 @@ export const Menu: FC = () => {
 
           <TitleDivider>Biblioteca</TitleDivider>
 
-          <ItemMenu descr="Minha Playlist" icon={<BiSolidPlaylist />} />
+          <ItemMenu
+            href="#myplaylist"
+            descr="Minha Playlist"
+            icon={<BiSolidPlaylist />}
+          />
           <ItemMenu href="#favorites" descr="Favoritas" icon={<IoStar />} />
         </div>
       </div>

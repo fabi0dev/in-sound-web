@@ -3,14 +3,14 @@ import { FC } from "react";
 import { FaPlay } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { setPlaylist } from "@/store/reducers/player";
-import { selectFavorites } from "@/store/reducers/favorites";
+import { selectPlaylist } from "@/store/reducers/playlist";
 
-export const Favorites: FC = () => {
+export const MyPlaylist: FC = () => {
   const dispatch = useDispatch();
-  const { tracks } = useSelector(selectFavorites);
+  const { tracks } = useSelector(selectPlaylist);
 
   return (
-    <Container title="Favoritas" className="text-slate-200">
+    <Container title="Minha Playlist" className="text-slate-200">
       <div>
         {tracks.length > 0 && (
           <div className="mt-5">
@@ -35,7 +35,9 @@ export const Favorites: FC = () => {
           })}
 
           {tracks?.length == 0 && (
-            <div className="text-center text-sm">Nenhuma favorita ainda.</div>
+            <div className="text-center text-sm">
+              Nenhuma música adicionada.
+            </div>
           )}
         </div>
       </div>
