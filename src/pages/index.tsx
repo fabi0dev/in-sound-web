@@ -9,6 +9,7 @@ import { AllPlaylists } from "./AllPlaylists";
 import { AllTracks } from "./AllTracks";
 import { Genre } from "./Genre";
 import { Search } from "./Search";
+import { MyPlaylist } from "./MyPlaylist";
 
 export default {
   Home,
@@ -22,4 +23,5 @@ export default {
   AllTracks,
   Genre,
   Search,
+  MyPlaylist,
 };

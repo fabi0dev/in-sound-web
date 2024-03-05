@@ -11,6 +11,12 @@ import {
   selectFavorites,
 } from "@/store/reducers/favorites";
 import { cn } from "@/lib/utils";
+import { IoAdd, IoCheckmark } from "react-icons/io5";
+import {
+  addTrackPlaylist,
+  removeTrackPlaylist,
+  selectPlaylist,
+} from "@/store/reducers/playlist";
 
 interface TrackItemProps {
   data: {
@@ -46,6 +52,19 @@ export const TrackItem: FC<TrackItemProps> = ({
   const dispatch = useDispatch();
   const { current, paused } = useSelector(selectorPlayer);
   const { tracks } = useSelector(selectFavorites);
+  const tracksPlaylist = useSelector(selectPlaylist).tracks;
+
+  const playlistMusic = async () => {
+    if (!playlistCheck()) {
+      dispatch(addTrackPlaylist(data));
+    } else {
+      dispatch(removeTrackPlaylist(data));
+    }
+  };
+
+  const playlistCheck = () => {
+    return tracksPlaylist.filter((item) => item.id == data.id).length > 0;
+  };
 
   const favoriteMusic = async () => {
     if (!favCheck()) {
@@ -107,10 +126,15 @@ export const TrackItem: FC<TrackItemProps> = ({
       </div>
 
       {!basic && (
-        <div className="flex text-xl justify-center items-center">
-          <span onClick={() => favoriteMusic()}>
+        <div className="flex text-xl justify-center items-center gap-x-5">
+          <span onClick={() => favoriteMusic()} className="cursor-pointer">
             {!favCheck() && <FaRegHeart />}
             {favCheck() && <FaHeart />}
+          </span>
+
+          <span onClick={() => playlistMusic()} className="cursor-pointer">
+            {!playlistCheck() && <IoAdd />}
+            {playlistCheck() && <IoCheckmark />}
           </span>
         </div>
       )}
