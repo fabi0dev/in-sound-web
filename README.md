@@ -2,7 +2,7 @@
 
 Ele oferece acesso a uma vasta biblioteca de músicas utilizando a [API do Deezer](https://developers.deezer.com/api), o preview oferecido é de apenas 30 segundos por cada música, mas a experiência musical é bem dinâmica, desde a descoberta de novas faixas até a criação de uma playlist personalizada.
 
-O App foi desenvolvido com [ReactJS](https://pt-br.legacy.reactjs.org/), [Redux Toolkit](https://redux-toolkit.js.org/), e [vite](https://vitejs.dev/) no seu workflow.
+O App foi desenvolvido com [ReactJS](https://pt-br.legacy.reactjs.org/), [Redux Toolkit](https://redux-toolkit.js.org/), e [Vite](https://vitejs.dev/) no seu workflow.
 
 <div>
   <img alt="img-1" src="https://i.imgur.com/kKuwgGv.png" />
@@ -19,7 +19,7 @@ O App foi desenvolvido com [ReactJS](https://pt-br.legacy.reactjs.org/), [Redux 
 - <b>Busca Avançada:</b> Uma busca avançada facilita a localização rápida de artistas, álbuns ou faixas específicas, garantindo uma experiência de descoberta musical eficiente.
 
 <div>
-  <img alt="img-3" src="https://i.imgur.com/rov4ZIU.png" />
+  <img alt="img-3" src="https://i.imgur.com/ScuZAe5.png" />
 </div>
 
 ### Sobre a Estrutura
@@ -28,7 +28,7 @@ O App foi desenvolvido com [ReactJS](https://pt-br.legacy.reactjs.org/), [Redux 
   <br />
 - O Redux Toolkit é uma biblioteca oficial do Redux projetada para simplificar e melhorar a experiência de desenvolvimento com o Redux.
   <br />
-- Tailwind CSS é uma biblioteca de utilitários CSS para estilização eficiente, fornece classes que podem ser combinadas para criar estilos personalizados.
+- [Tailwind CSS](https://tailwindcss.com/) é uma biblioteca de utilitários CSS para estilização eficiente, fornece classes que podem ser combinadas para criar estilos personalizados.
   <br />
 - O Redux foi implementado para o gerenciamento de estado, o que é crucial para manter a consistência e a eficiência do aplicativo, também utilizei a persistência de dados para que ficasse salvo no local a playlist e qual música está sendo reproduzida.
   <br />
