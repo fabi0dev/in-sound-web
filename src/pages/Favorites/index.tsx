@@ -10,7 +10,7 @@ export const Favorites: FC = () => {
   const { tracks } = useSelector(selectFavorites);
 
   return (
-    <Container className="text-slate-200">
+    <Container title="Favoritas" className="text-slate-200">
       <div>
         <div className="mt-5">
           <Button

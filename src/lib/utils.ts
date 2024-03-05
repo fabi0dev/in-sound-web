@@ -1,3 +1,6 @@
+import { deezer } from "@/services/DeezerAPI";
+import { clearPlayer, setPlaylist } from "@/store/reducers/player";
+import { store } from "@/store/store";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -21,4 +24,18 @@ export const convertTime = (duration: number) => {
   ret += "" + secs;
 
   return ret;
+};
+
+export const playArtist = async (id: number) => {
+  const { data } = await deezer.getArtistTopTrack(id.toString());
+  const { dispatch } = store;
+  dispatch(clearPlayer());
+  dispatch(setPlaylist(data));
+};
+
+export const playPlaylist = async (id: number) => {
+  const { tracks } = await deezer.getPlaylist(id.toString());
+  const { dispatch } = store;
+  dispatch(clearPlayer());
+  dispatch(setPlaylist(tracks.data));
 };

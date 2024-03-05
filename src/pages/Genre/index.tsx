@@ -38,7 +38,7 @@ export const Genre = () => {
     getChart();
   }, [getChart]);
   return (
-    <Container>
+    <Container title="Todos os gêneros">
       {info && (
         <div className="flex mt-5">
           <div

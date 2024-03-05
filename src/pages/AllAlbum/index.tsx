@@ -20,7 +20,7 @@ export const AllAlbum: FC = () => {
   }, []);
 
   return (
-    <Container className="text-slate-200">
+    <Container title="Albuns populares" className="text-slate-200">
       <TitleMin>Albuns populares</TitleMin>
       {loading && (
         <div className="flex flex-wrap gap-5 justify-start">

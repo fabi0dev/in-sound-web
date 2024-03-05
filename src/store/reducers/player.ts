@@ -60,6 +60,7 @@ export const slice = createSlice({
       return {
         ...state,
         playlist: payload,
+        paused: false,
         current: payload.length > 0 ? payload[0] : [],
       };
     },
@@ -81,6 +82,12 @@ export const slice = createSlice({
         volume: payload,
       };
     },
+    clearPlayer: (state) => {
+      return {
+        ...state,
+        ...initialState,
+      };
+    },
     prevTrack: (state) => {
       const { playlist, current } = state as PlayerProps;
       let prev: TrackProps | null = null;
@@ -97,6 +104,7 @@ export const slice = createSlice({
       return {
         ...state,
         paused: false,
+        currentTime: 0,
         current: prev as TrackProps,
       };
     },
@@ -116,6 +124,7 @@ export const slice = createSlice({
       return {
         ...state,
         paused: false,
+        currentTime: 0,
         current: next as TrackProps,
       };
     },
@@ -127,6 +136,7 @@ export const {
   setPlaylist,
   setPaused,
   setCurrentTime,
+  clearPlayer,
   nextTrack,
   prevTrack,
   setVolume,

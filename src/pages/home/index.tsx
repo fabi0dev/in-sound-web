@@ -21,7 +21,7 @@ export const Home = () => {
     getChartHome();
   }, [getChartHome]);
   return (
-    <Container>
+    <Container title="Início">
       <ContentAlbums />
       <ContentArtists />
 

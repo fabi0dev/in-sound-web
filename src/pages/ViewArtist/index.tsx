@@ -71,7 +71,7 @@ export const ViewArtist: FC = () => {
   }, [getData]);
 
   return (
-    <Container className="text-slate-200">
+    <Container title={data?.name as string} className="text-slate-200">
       {loading && <SkeletonPlaylist />}
       {!loading && (
         <div>

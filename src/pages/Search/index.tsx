@@ -1,11 +1,17 @@
-import { Container, Input, Tabs, TrackItem } from "@/components";
+import {
+  Container,
+  Input,
+  ItemPictureArtist,
+  Tabs,
+  TrackItem,
+} from "@/components";
 import { FC, useEffect, useState } from "react";
 import { ContentGenres } from "./ContentGenres";
 import { IoMdSearch } from "react-icons/io";
 import { deezer } from "@/services/DeezerAPI";
-import { PiPlayCircleFill } from "react-icons/pi";
 import { useSearchParams } from "react-router-dom";
 import { TabsContent, TabsList, TabsTrigger } from "@/components/Tabs";
+import { ItemPicturePlaylist } from "@/components/ItemPicturePlaylist";
 
 interface ITrack {
   id: number;
@@ -95,38 +101,13 @@ export const Search: FC = () => {
   const ContentArtist = ({ limit = 6, title = "Artistas" }) => {
     return (
       <div>
-        <div className="text-xl font-bold text-slate-200 my-9 ">{title}</div>
+        {dataArtist.length > 0 && (
+          <div className="text-xl font-bold text-slate-200 my-9 ">{title}</div>
+        )}
         <div className="flex flex-wrap gap-5">
-          {dataArtist.map(({ id, picture_medium, name }, index) => {
+          {dataArtist.map((artist, index) => {
             if (index < limit) {
-              return (
-                <a
-                  key={index}
-                  href={`#ViewArtist?id=${id}`}
-                  className="bg bg-slate-900 hover:bg-slate-800 rounded-md p-4 "
-                >
-                  <div className="content-hover-options text-slate-200 ">
-                    <div
-                      style={{
-                        backgroundImage: `url('${picture_medium}')`,
-                      }}
-                      className={`h-48 w-48 bg-cover rounded-2xl`}
-                    ></div>
-
-                    <div className="hover-options text-cyan-400 flex justify-end">
-                      <a className="cursor-pointer">
-                        <PiPlayCircleFill className="icon shadow-black " />
-                      </a>
-                    </div>
-
-                    <div>
-                      <div className="w-48 mt-4 text-[15px] font-semibold truncate">
-                        {name}
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              );
+              return <ItemPictureArtist data={artist} index={index} />;
             }
           })}
         </div>
@@ -137,37 +118,18 @@ export const Search: FC = () => {
   const ContentPlaylists = ({ limit = 6, title = "Playlists" }) => {
     return (
       <div>
-        <div className="text-xl font-bold text-slate-200 my-9 ">{title}</div>
+        {dataPlaylist.length > 0 && (
+          <div className="text-xl font-bold text-slate-200 my-9 ">{title}</div>
+        )}
         <div className="flex flex-wrap gap-5">
           {dataPlaylist.map((playlist, index) => {
             if (index < limit) {
               return (
-                <a
+                <ItemPicturePlaylist
+                  data={playlist}
+                  index={index}
                   key={index}
-                  href={`#ViewPlaylist?id=${playlist.id}`}
-                  className="bg bg-slate-900 hover:bg-slate-800 rounded-md p-4 "
-                >
-                  <div className="content-hover-options text-slate-200 ">
-                    <div
-                      style={{
-                        backgroundImage: `url('${playlist.picture_medium}')`,
-                      }}
-                      className={`h-48 w-48 bg-cover rounded-2xl`}
-                    ></div>
-
-                    <div className="hover-options text-cyan-400 flex justify-end">
-                      <a className="cursor-pointer">
-                        <PiPlayCircleFill className="icon shadow-black " />
-                      </a>
-                    </div>
-
-                    <div>
-                      <div className="w-48 mt-4 text-[15px] font-semibold truncate">
-                        {playlist.title}
-                      </div>
-                    </div>
-                  </div>
-                </a>
+                />
               );
             }
           })}
@@ -190,7 +152,7 @@ export const Search: FC = () => {
   };
 
   return (
-    <Container>
+    <Container title="buscar">
       <div className="flex w-full mb-10 px-5">
         <div className="w-1/3 flex items-center -ml-6 ">
           <IoMdSearch className="w-5 h-5 ml-3 absolute text-slate-500" />
@@ -220,15 +182,21 @@ export const Search: FC = () => {
                 <div>
                   <div className="text-2xl mb-2">Resultado principal</div>
                   <div className="w-72 h-72 p-5  bg-slate-900 flex flex-wrap items-center rounded-lg">
-                    <div
-                      className="w-32 h-32 bg-center bg-cover rounded-full"
-                      style={{
-                        backgroundImage: `url(${dataArtist[0].picture_medium})`,
-                      }}
-                    ></div>
+                    <a href={`#ViewArtist?id=${dataArtist[0].id}`}>
+                      <div
+                        className="w-32 h-32 bg-center bg-cover rounded-lg"
+                        style={{
+                          backgroundImage: `url(${dataArtist[0].picture_medium})`,
+                        }}
+                      ></div>
 
-                    <div className="w-full text-3xl">{dataArtist[0].name}</div>
-                    <div className="w-full text-lg text-slate-400">Artista</div>
+                      <div className="w-full text-3xl">
+                        {dataArtist[0].name}
+                      </div>
+                      <div className="w-full text-lg text-slate-400">
+                        Artista
+                      </div>
+                    </a>
                   </div>
                 </div>
               )}

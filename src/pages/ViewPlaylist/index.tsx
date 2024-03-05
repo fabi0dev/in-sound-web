@@ -67,7 +67,7 @@ export const ViewPlaylist: FC = () => {
   }, [getData]);
 
   return (
-    <Container className="text-slate-200">
+    <Container title={data?.title as string} className="text-slate-200">
       {loading && <SkeletonPlaylist />}
       {!loading && (
         <div>

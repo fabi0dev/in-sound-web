@@ -1,8 +1,8 @@
 import { Container, TitleMin } from "@/components";
 import { SkeletonItemPicture } from "@/components/ItemPicture/SkeletonItemPicture";
+import { ItemPicturePlaylist } from "@/components/ItemPicturePlaylist";
 import { deezer } from "@/services/DeezerAPI";
 import { FC, useCallback, useEffect, useState } from "react";
-import { PiPlayCircleFill } from "react-icons/pi";
 
 export const AllPlaylists: FC = () => {
   const [data, setData] = useState([]);
@@ -20,7 +20,7 @@ export const AllPlaylists: FC = () => {
   }, [getAlbum]);
 
   return (
-    <Container className="text-slate-200">
+    <Container title="Playlists populares" className="text-slate-200">
       <TitleMin>Playlists populares</TitleMin>
       {loading && (
         <div className="flex flex-wrap gap-5 justify-start">
@@ -34,32 +34,9 @@ export const AllPlaylists: FC = () => {
 
       {!loading && (
         <div className="flex flex-wrap gap-5 justify-start">
-          {data?.map(({ id, picture_medium, name }, key) => {
+          {data?.map((playlist, index) => {
             return (
-              <a
-                key={key}
-                href={`#ViewPlaylist?id=${id}`}
-                className="bg bg-slate-900 bg-opacity-50 hover:bg-slate-800 rounded-md p-4 "
-              >
-                <div className="content-hover-options text-slate-200">
-                  <div
-                    style={{ backgroundImage: `url('${picture_medium}')` }}
-                    className={`h-48 w-48 bg-cover rounded-md`}
-                  ></div>
-
-                  <div className="hover-options text-cyan-400 flex justify-end">
-                    <a className="cursor-pointer">
-                      <PiPlayCircleFill className="icon" />
-                    </a>
-                  </div>
-
-                  <div>
-                    <div className="w-48 mt-4 text-[15px] font-semibold truncate">
-                      {name}
-                    </div>
-                  </div>
-                </div>
-              </a>
+              <ItemPicturePlaylist data={playlist} index={index} key={index} />
             );
           })}
         </div>

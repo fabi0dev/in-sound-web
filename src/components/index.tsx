@@ -11,6 +11,7 @@ import { TitleDivider } from "./TitleDivider";
 import { TitleMin } from "./TitleMin";
 import { Popover } from "./Popover";
 import { Tabs } from "./Tabs";
+import { ItemPictureArtist } from "./ItemPictureArtist";
 
 export {
   Header,
@@ -26,4 +27,5 @@ export {
   TitleDivider,
   Popover,
   Tabs,
+  ItemPictureArtist,
 };

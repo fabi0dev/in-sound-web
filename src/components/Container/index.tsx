@@ -1,13 +1,22 @@
 import { cn } from "@/lib/utils";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Header, Menu } from "..";
 
 interface ContainerProps {
   children: React.ReactNode;
   className?: string;
+  title: string;
 }
 
-export const Container: FC<ContainerProps> = ({ children, className }) => {
+export const Container: FC<ContainerProps> = ({
+  children,
+  className,
+  title,
+}) => {
+  useEffect(() => {
+    document.title = `InSound Web ${title ? ` - ${title}` : ``}`;
+  }, [title]);
+
   return (
     <div className={cn("min-h-lvh", className)}>
       <Menu />

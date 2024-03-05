@@ -74,7 +74,7 @@ export const ViewAlbum: FC = () => {
   }, [getData]);
 
   return (
-    <Container className="text-slate-200">
+    <Container title={data?.title as string} className="text-slate-200">
       {loading || (!data?.id && <SkeletonAlbum />)}
       {!loading && data?.id && (
         <div>

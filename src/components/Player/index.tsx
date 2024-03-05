@@ -44,9 +44,16 @@ export const Player: FC = () => {
     }
   };
 
+  const playerEvents = () => {
+    player.onended = () => {
+      dispatch(nextTrack());
+    };
+  };
+
   useEffect(() => {
     player.src = preview;
     player.play();
+    playerEvents();
 
     return () => {
       player.src = "";
