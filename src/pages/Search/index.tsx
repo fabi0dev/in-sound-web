@@ -152,7 +152,7 @@ export const Search: FC = () => {
   };
 
   return (
-    <Container title="buscar">
+    <Container title="Buscar">
       <div className="flex w-full mb-10 px-5">
         <div className="w-1/3 flex items-center -ml-6 ">
           <IoMdSearch className="w-5 h-5 ml-3 absolute text-slate-500" />
@@ -170,7 +170,7 @@ export const Search: FC = () => {
       {q != null && q != "" && (
         <Tabs defaultValue="fists">
           <TabsList>
-            <TabsTrigger value="fists">Primeiros</TabsTrigger>
+            <TabsTrigger value="fists">Primeiros resultados</TabsTrigger>
             <TabsTrigger value="artists">Artistas</TabsTrigger>
             <TabsTrigger value="tracks">Músicas</TabsTrigger>
             <TabsTrigger value="playlists">Playlists</TabsTrigger>
@@ -201,25 +201,27 @@ export const Search: FC = () => {
                 </div>
               )}
 
-              <div>
-                <div className="text-2xl ml-5 mb-2">Músicas</div>
-                <div className="ml-5 gap-2 flex flex-wrap items-center h-60 ">
-                  {dataTracks.map((track, index) => {
-                    if (index < 4) {
-                      return (
-                        <div className="w-full">
-                          <TrackItem
-                            basic={true}
-                            data={track}
-                            key={index}
-                            index={null}
-                          />
-                        </div>
-                      );
-                    }
-                  })}
+              {dataArtist && dataArtist.length > 0 && (
+                <div>
+                  <div className="text-2xl ml-5 mb-2">Músicas</div>
+                  <div className="ml-5 gap-2 flex flex-wrap items-center h-60 ">
+                    {dataTracks.map((track, index) => {
+                      if (index < 4) {
+                        return (
+                          <div className="w-full">
+                            <TrackItem
+                              basic={true}
+                              data={track}
+                              key={index}
+                              index={null}
+                            />
+                          </div>
+                        );
+                      }
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <ContentArtist />

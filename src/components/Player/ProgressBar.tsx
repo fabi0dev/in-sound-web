@@ -16,23 +16,17 @@ export const ProgressBar: FC<ProgressBarProps> = ({ player }) => {
   const [durationTotal, setDurationTotal] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const percentDuration = (player.currentTime * 100) / player.duration;
-      setSliderValue(percentDuration);
+    player.ontimeupdate = () => {
+      if (currentTime != player.currentTime) {
+        const percentDuration = (player.currentTime * 100) / player.duration;
+        setSliderValue(percentDuration);
 
-      if (!player.paused) {
         if (durationTotal != player.duration) {
           setDurationTotal(player.duration);
         }
 
-        if (currentTime != player.currentTime) {
-          dispatch(setCurrentTime(player.currentTime));
-        }
+        dispatch(setCurrentTime(player.currentTime));
       }
-    });
-
-    return () => {
-      clearInterval(interval);
     };
   }, [dispatch, player, durationTotal, currentTime]);
 
